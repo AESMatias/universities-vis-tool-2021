@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - Delivery 2</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <h1 class="main-title">Global University Analysis 2021: Rankings and Characteristics</h1>
+        <div class="description-box">
+            <p>This tool provides a detailed view of universities worldwide, only for the 2021 year. 
+                Explore information about teaching scores, research, citations, industry income, and international outlook of higher 
+                education institutions.</p>
+            <p>You can use the interactive visualizations to compare universities by country, specific attributes, and position in the global ranking.</p>
+        </div>
+    </header>
+
+    <div class="separator"></div>
+
+    <div id="search-by">
+        <div class="generalContainer">
+            <h2 id='orderBy' class="orderBy-box">Order by: Students</h2>
+            <div class="buttonsContainer">
+                <button class='filterButton' value="Citations">Citations score</button>
+                <button class='filterButton' value="Research">Research score</button>
+                <button class='filterButton' value="Industry">Industry income</button>
+                <button class='filterButton' value="Students">Num of students</button>
+                <button class='filterButton' value="Teaching">Teaching score</button>
+                <!-- <button class='filterButton' value="Outlook">Intl Outlook score</button>
+                <button class='filterButton' value="Overall">Overall score</button>
+                <button class='filterButton' value="int">Perc int students</button> -->
+            </div>
+            <div class="filterCountry">
+                <h3 class="filter-heading">Filter by country:</h3>
+                <select class="selectButton" style="height: 30px; margin:10px;">
+                    <option selected value="none">Select a country</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="United States">United States</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="China">China</option>
+                    <option value="Australia">Australia</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Germany">Germany</option>
+                    <!-- <option value="Singapore">Singapore</option> -->
+                    <option value="Japan">Japan</option>
+                    <option value="France">France</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Argentina">Argentina</option>
+                </select>
+            </div>
+            <button id="launch">Filter</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+
+    <div class="visualization-container">
+        <h2 class="vis-title">Visualization 1: University Comparison by Selected Attribute</h2>
+
+        <div class="interaction-guide-box">
+            <h3 class="guide-title">Description:</h3>
+            <p>This visualization shows universities from the selected country, ordered by the chosen attribute. 
+                Each bar represents a university, and its length indicates the value of the selected attribute.</p>
+            <h3 class="guide-title">Interactions:</h3>
+            <ul>
+                <li>Click on the filter buttons to change the comparison attribute.</li>
+                <li>Use the country selector to filter universities by location.</li>
+                <li>Hover over the bars to see the exact value of the attribute.</li>
+                <li>Click over the bars to see more detailed information about the university in a tooltip.</li>
+            </ul>
+        </div>
+
+        <h3 class="info-text">The graph below is restricted to 30 Universities maximum</h3>
+        <h4 class="info-text">You can fetch more Universities in a certain country in the third visualization at the end</h4>
+        <div class='chart-container' id="chart-container">
+            <div class="separator"></div>
+            <svg>
+                <text id="title">Title</text>
+            </svg>
+        </div>
+        <div class="separator"></div>
+        <div class="legend-container">
+            <div class="legend">
+                <span>No universities (filled black)</span>
+                <div class="color-box black"></div>
+            </div>
+            <div class="legend">
+                <span>Selected universities (border red) </span>
+                <div class="color-box red"></div>
+            </div>
+            <div class="legend">
+                <span>The more obscure the blue color is (filled), </span>
+                <div class="color-box blue"></div>
+                <span>the more universities that country has in the ranking.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="visualization-container">
+        <h2 class="vis-title" style="margin-top:10px;">Visualization 2: Global Distribution of Universities</h2>
+        
+        <div class="interaction-guide-box">
+            <h3 class="guide-title">Description:</h3>
+            <p>This interactive map shows the distribution of ranked universities by country. The intensity of the blue color indicates the number of universities in the ranking for each country.</p>
+            The world map is interactive, you can hover in a country to see their name and the universities this country has in the ranking. Also, you can click in a country to update the first and last visualization with the universities of that country.
+            <h3 class="guide-title">Interactions:</h3>
+            <ul>
+                <li>Hover over a country to see its name and the number of universities in the ranking in a tooltip.</li>
+                <li>Click on a country to update the other visualizations with data from that country.</li>
+                <li>Use zoom to explore specific areas of the map.</li>
+            </ul>
+        </div>
+
+        <div id="second-container"></div>
+        <div class="separator"></div>
+
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="visualization-container">
+
+        <h2 class="vis-title">Visualization 3: Attribute Comparison Between Universities</h2>
+
+        <div class="interaction-guide-box">
+            <h3 class="guide-title">Description:</h3>
+            <p>This scatter plot allows comparison of two selected attributes among universities in a specific country
+                previously selected in the second and first visualizations.
+                 Each point represents a university.</p>
+            <h3 class="guide-title">Interactions:</h3>
+            <ul>
+                <li>Select different attributes in the dropdown menus to change the graph axes.</li>
+                <li>Use zoom to explore specific areas of the graph.</li>
+                <li>Hover over the points to see detailed information about each university.</li>
+                <li>Click on the points to see more detailed information about the university in a tooltip.</li>
+            </ul>
+        </div>
+
+
+        <div class="selectAttributes">
+            <h3 class="filter-heading">Compare by attributes:</h3>
+            <select id="AttributeTwo" style="height: 30px; margin:10px;">
+                <option value="teaching score">Teaching Score</option>
+                <option selected value="research score">Research Score</option>
+                <option value="number students">Number Students</option>
+                <option value="overall score">Overall Score</option>
+            </select>
+            
+            <select id="AttributeOne" style="height: 30px; margin:10px;">
+                <option value="teaching score">Teaching Score</option>
+                <option value="research score">Research Score</option>
+                <option value="number students">Number Students</option>
+                <option value="overall score">Overall Score</option>
+            </select>
+            <button id="Compare">Compare</button>    
+        </div>
+
+        <div class="flex-text info-box" id="flex-text-world">
+            <span>Comparing universities in a previous selected country by two of their attributes, you can change them in the filter above, and click "Compare" to load the graph.</span> 
+        </div>
+        <div class="separator"></div>
+
+        <div id="third-container"></div>
+        <div class="separator"></div>
+
+    </div>
+
+
+    <div class="interaction-guide-box">
+        <div class="references">
+            <h3>References</h3>
+            <p>The second visualization was created using this <a href="https://www.youtube.com/watch?v=NWovCp-7JTo&t=1980s">
+                YouTube Video</a> from the channel 'Garaje de ideas' as an initial code reference.</p>
+            <p>ChatGPT was used to generate the safeData constant in the script.js file, and another few
+                functions to generate the data and animations for the third visualization.</p>
+        </div>
+    </div>
+
+
+    <!-- Including D3.js from a CDN for now (or forever) -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js" type="module"></script>
+</body>
+
+</html>
